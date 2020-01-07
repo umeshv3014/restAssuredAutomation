@@ -1,6 +1,6 @@
 package apiPayLoads;
 
-public class bodyPayloads {
+public class XMLbodyPayloads {
 
 	public static String getPostDataAddPlace() {
 		String addPlacePlayload = "{"

@@ -1,4 +1,4 @@
-package com.googlePlacesRestApi.restAssured;
+package com.googlePlacesRestApi.restAssuredJSON;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -6,7 +6,7 @@ import java.util.Properties;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.places.java.util.JavaUtil;
+import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
@@ -20,7 +20,7 @@ public class SearchNearByGooglePlacesGet {
 	Properties prop;
 	@BeforeTest
 	public void readDataFromExternalFiles() throws IOException {
-		prop = JavaUtil
+		prop = ApiUtil
 				.readPropertiesFileData(Constant.CONFIGURATION_PROPERTIES);
 	}
 
@@ -40,7 +40,7 @@ public class SearchNearByGooglePlacesGet {
 				.
 				// pass resources on get under when
 				when()
-				.get(ApiEndPointResources.getResourcesGooglePlace())
+				.get(ApiEndPointResources.getResourcesGooglePlaceJSON())
 				.
 				// to assert the response under then()
 				then()

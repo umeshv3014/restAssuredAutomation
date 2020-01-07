@@ -1,4 +1,4 @@
-package com.googlePlacesRestApi.restAssured;
+package com.googlePlacesRestApi.restAssuredXML;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -6,7 +6,7 @@ import java.util.Properties;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.places.java.util.JavaUtil;
+import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.Constant;
 
 import io.restassured.RestAssured;
@@ -21,7 +21,7 @@ public class ReadingDataFromExternalFilesProperties {
 
 	@BeforeTest
 	public void readDataFromExternalFiles() throws IOException {
-		prop = JavaUtil
+		prop = ApiUtil
 				.readPropertiesFileData(Constant.CONFIGURATION_PROPERTIES);
 	}
 

@@ -1,4 +1,4 @@
-package com.googlePlacesRestApi.restAssured;
+package com.googlePlacesRestApi.restAssuredJSON;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -6,11 +6,11 @@ import java.util.Properties;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.google.places.java.util.JavaUtil;
+import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
-import apiPayLoads.bodyPayloads;
+import apiPayLoads.JSONbodyPayloads;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static org.hamcrest.Matchers.equalTo;
@@ -21,7 +21,7 @@ public class CreateGooglePlacesApiPost {
 	Properties prop;
 	@BeforeTest
 	public void readDataFromExternalFiles() throws IOException {
-		prop = JavaUtil
+		prop = ApiUtil
 				.readPropertiesFileData(Constant.CONFIGURATION_PROPERTIES);
 	}
 
@@ -31,9 +31,9 @@ public class CreateGooglePlacesApiPost {
 		RestAssured.baseURI = prop.getProperty("qaclickEndPoint");
 		given().
 		queryParam("key", prop.getProperty("qaclickApiKey")).
-		body(bodyPayloads.getPostDataAddPlace()).
+		body(JSONbodyPayloads.getPostDataAddPlace()).
 		when().
-		post(ApiEndPointResources.getPostResourcesAddPlaces()).
+		post(ApiEndPointResources.getPostResourcesAddPlacesJSON()).
 		then().assertThat().statusCode(200).and().contentType(ContentType.JSON).and().
 	    body("status", equalTo("OK"));
 
