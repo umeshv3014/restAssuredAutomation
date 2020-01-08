@@ -42,7 +42,6 @@ public class DeleteBookFromLibarryApiPost {
 				.body("status", equalTo("OK")).extract().response();
 		responseJson = 	ApiUtil.rawToJson(res);
 		String placeId = responseJson.get("place_id");
-
 		// delete the created entity
 		given().queryParam("key", prop.getProperty("qaclickApiKey"))
 				.body(JSONbodyPayloads.getPostDataDeletePlace(placeId)).when()
