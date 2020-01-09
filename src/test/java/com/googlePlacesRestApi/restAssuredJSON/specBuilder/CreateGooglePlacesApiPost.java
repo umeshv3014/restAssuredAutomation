@@ -6,14 +6,12 @@ import java.util.Properties;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.google.places.api.util.RequestResponseSpecBuilders;
 import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
 import apiPayLoads.JSONbodyPayloads;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -32,15 +30,11 @@ public class CreateGooglePlacesApiPost {
 
 	@Test
 	public void createGooglePlacesAPIusingSpecBuilder() {
-
+		
+		RequestSpecification req =	RequestResponseSpecBuilders.reqSpecBuilder(prop.getProperty("qaclickEndPoint"), ContentType.JSON);
+		ResponseSpecification res = RequestResponseSpecBuilders.respSpecBuilder(200, ContentType.JSON);
 		// RestAssured.baseURI = prop.getProperty("qaclickEndPoint");
-		RequestSpecification req = new RequestSpecBuilder()
-				.setBaseUri(prop.getProperty("qaclickEndPoint"))
-				.setContentType(ContentType.JSON).build();
-
-		ResponseSpecification res = new ResponseSpecBuilder()
-				.expectStatusCode(200).expectContentType(ContentType.JSON)
-				.build();
+		
 
 		given().spec(req).body(JSONbodyPayloads.getPostDataAddPlace()).when()
 				.post(ApiEndPointResources.getPostResourcesAddPlacesJSON())
