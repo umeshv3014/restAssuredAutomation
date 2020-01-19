@@ -1,5 +1,8 @@
 package apiPayLoads;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JSONbodyPayloads {
 
 	public static String getPostDataAddPlace() {
@@ -28,6 +31,25 @@ public class JSONbodyPayloads {
 		String deletePlace = "{\r\n \r\n\"name\":\"Learn Appium Automation with Java\",\r\n\"isbn\":\"bcd\",\r\n\"aisle\":\""
 				+ isbn + "\",\r\n\"author\":\"John foe\"\r\n}\r\n";
 		return deletePlace;
+	}
+
+	public static AddGooglePlaces getPostDataAddPlaceDynamic() {
+		AddGooglePlaces ap = new AddGooglePlaces();
+		ap.setAccuracy(50);
+		ap.setAddress("29, side layout, cohen 09");
+		ap.setLanguage("French-IN");
+		ap.setName("Frontline house");
+		ap.setPhone_number("(+91) 983 893 3937");
+		ap.setWebsite("http://google.com");
+		LocationGooglePlaces lp = new LocationGooglePlaces();
+		lp.setLat(-38.383494);
+		lp.setLng(33.427362);
+		ap.setLocation(lp);
+		List<String> arr = new ArrayList<String>();
+		arr.add("shoe park");
+		arr.add("shop");
+		ap.setTypes(arr);
+		return ap;
 	}
 
 }

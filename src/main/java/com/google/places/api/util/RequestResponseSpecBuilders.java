@@ -7,14 +7,18 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class RequestResponseSpecBuilders {
+	
+	
 
-	public static RequestSpecification reqSpecBuilder(String uri, ContentType type) {
+	//used to generate request body with content type 
+	public static RequestSpecification requestSpecification(String uri, ContentType type) {
 		RequestSpecification req = new RequestSpecBuilder().setBaseUri(uri)
 				.setContentType(type).build();
 		return req;
 	}
 
-	public static ResponseSpecification respSpecBuilder(int statusCode,
+	//used to get response body  with content type
+	public static ResponseSpecification responseSpecification(int statusCode,
 			ContentType type) {
 		ResponseSpecification res = new ResponseSpecBuilder()
 				.expectStatusCode(statusCode).expectContentType(type)

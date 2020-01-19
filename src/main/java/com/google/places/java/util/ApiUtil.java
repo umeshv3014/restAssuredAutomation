@@ -12,10 +12,13 @@ import java.util.Properties;
 
 public class ApiUtil {
 
+	
 	public static String generateStringFromResource(String path)
 			throws IOException {
 		return new String(Files.readAllBytes(Paths.get(path)));
 	}
+
+	//to read and load the properties file
 	public static Properties readPropertiesFileData(String filePath)
 			throws IOException {
 		Properties prop = new Properties();
@@ -24,6 +27,8 @@ public class ApiUtil {
 		return prop;
 	}
 
+	
+	//used to convert from raw to xml
 	public static XmlPath rawToXML(Response r) {
 
 		String respon = r.asString();
@@ -32,6 +37,7 @@ public class ApiUtil {
 
 	}
 
+	//used to convert from raw to json
 	public static JsonPath rawToJson(Response r) {
 		String respon = r.asString();
 		JsonPath x = new JsonPath(respon);
