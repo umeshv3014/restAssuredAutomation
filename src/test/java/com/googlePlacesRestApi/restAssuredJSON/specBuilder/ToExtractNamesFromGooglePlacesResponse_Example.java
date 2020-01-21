@@ -10,6 +10,7 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
+import enumApiResources.ApiResources;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -33,13 +34,14 @@ public class ToExtractNamesFromGooglePlacesResponse_Example {
 
 		// setting the base url uri
 		RestAssured.baseURI = prop.getProperty("googleEndPoing");
+		ApiResources addPlaceApiResources = ApiResources.valueOf("GetPlaceAPIResources_JSON"); //using from enum
 
 		// pass what all i have under given()
 		Response res = given().param("location", "-33.8670522,151.1957362")
 				.param("radius", "500").param("type", "restaurant")
 				.param("keyword", "cruise")
 				.param("key", prop.getProperty("googlePlaceApiKey")).when()
-				.get(ApiEndPointResources.getResourcesGooglePlaceJSON()).then()
+				.get(addPlaceApiResources.getApiResources()).then()
 				.assertThat().statusCode(200).and()
 				.contentType(ContentType.JSON).and().extract().response();
 

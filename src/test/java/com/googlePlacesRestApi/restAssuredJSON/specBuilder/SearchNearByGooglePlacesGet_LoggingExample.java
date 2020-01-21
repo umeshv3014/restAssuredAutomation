@@ -10,6 +10,7 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
+import enumApiResources.ApiResources;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
@@ -30,6 +31,7 @@ public class SearchNearByGooglePlacesGet_LoggingExample {
 
 		// setting the base url uri
 		RestAssured.baseURI = prop.getProperty("googleEndPoing");
+		ApiResources getPlaceApiResources = ApiResources.valueOf("GetPlaceAPIResources_JSON");
 
 		// pass what all i have under given()
 		given().param("location", "-33.8670522,151.1957362")
@@ -40,7 +42,7 @@ public class SearchNearByGooglePlacesGet_LoggingExample {
 				.log().all().
 				// pass resources on get under when
 				when()
-				.get(ApiEndPointResources.getResourcesGooglePlaceJSON())
+				.get(getPlaceApiResources.getApiResources())
 				.
 				// to assert the response under then()
 				then()

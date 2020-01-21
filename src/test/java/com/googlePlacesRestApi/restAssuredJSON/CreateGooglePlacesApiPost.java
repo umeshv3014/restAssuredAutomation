@@ -10,7 +10,8 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
-import apiPayLoads.JSONbodyPayloads;
+import enumApiResources.ApiResources;
+import testDataBuild.JSONbodyPayloads;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static org.hamcrest.Matchers.equalTo;
@@ -27,13 +28,14 @@ public class CreateGooglePlacesApiPost {
 
 	@Test
 	public void createGooglePlacesAPI(){
+		ApiResources addPlaceApiResources = ApiResources.valueOf("AddPlaceAPIResources_JSON");
 		
 		RestAssured.baseURI = prop.getProperty("qaclickEndPoint");
 		given().
 		queryParam("key", prop.getProperty("qaclickApiKey")).
 		body(JSONbodyPayloads.getPostDataAddPlace()).
 		when().
-		post(ApiEndPointResources.getPostResourcesAddPlacesJSON()).
+		post(addPlaceApiResources.getApiResources()).
 		then().assertThat().statusCode(200).and().contentType(ContentType.JSON).and().
 	    body("status", equalTo("OK"));
 

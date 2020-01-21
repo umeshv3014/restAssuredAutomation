@@ -10,12 +10,11 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
-import apiPayLoads.JSONbodyPayloads;
+import enumApiResources.ApiResources;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
-import static org.hamcrest.Matchers.equalTo;
 import static io.restassured.RestAssured.given;
 
 public class CreateGooglePlacesApiPost {
@@ -35,10 +34,11 @@ public class CreateGooglePlacesApiPost {
 	public void createGooglePlacesAPI() {
 
 		RestAssured.baseURI = prop.getProperty("qaclickEndPoint");
+		ApiResources addPlaceApiResources = ApiResources.valueOf("GetPlaceAPIResources_XML");
 		Response res = given()
 				.queryParam("key", prop.getProperty("qaclickApiKey"))
 				.body(xmlPayLoads).when()
-				.post(ApiEndPointResources.GetPostResourcesAddPlacesXML())
+				.post(addPlaceApiResources.getApiResources())
 				.then().assertThat().statusCode(200).and()
 				.contentType(ContentType.XML).and().extract().response();
 

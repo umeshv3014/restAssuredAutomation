@@ -10,6 +10,7 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
+import enumApiResources.ApiResources;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
@@ -31,6 +32,7 @@ public class SearchNearByGooglePlacesGet {
 
 		// setting the base url uri
 		RestAssured.baseURI = prop.getProperty("googleEndPoing");
+		ApiResources addPlaceApiResources = ApiResources.valueOf("GetPlaceAPIResources_XML");
 
 		// pass what all i have under given()
 		given().param("location", "-33.8670522,151.1957362")
@@ -38,7 +40,7 @@ public class SearchNearByGooglePlacesGet {
 				.param("keyword", "cruise")
 				.param("key", prop.getProperty("googlePlaceApiKey")).
 				// pass resources on get under when
-				when().get(ApiEndPointResources.getResourcesGooglePlaceXML()).
+				when().get(addPlaceApiResources.getApiResources()).
 				// to assert the response under then()
 				then().assertThat().statusCode(200).and()
 				// putting validation on headers

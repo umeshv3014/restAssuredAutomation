@@ -12,8 +12,8 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
+import enumApiResources.ApiResources;
 import apiPayLoads.AddGooglePlaces;
-import apiPayLoads.JSONbodyPayloads;
 import apiPayLoads.LocationGooglePlaces;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -33,6 +33,7 @@ public class CreateGooglePlacesApiPostUsingDynamicPayload {
 
 	@Test
 	public void createGooglePlacesAPI() {
+		ApiResources addPlaceApiResources = ApiResources.valueOf("AddPlaceAPIResources_JSON");
 		AddGooglePlaces ap = new AddGooglePlaces();
 		ap.setAccuracy(50);
 		ap.setAddress("29, side layout, cohen 09");
@@ -51,7 +52,7 @@ public class CreateGooglePlacesApiPostUsingDynamicPayload {
 		RestAssured.baseURI = prop.getProperty("qaclickEndPoint");
 		Response res = given().queryParam("key", prop.getProperty("qaclickApiKey"))
 				.body(ap).when()
-				.post(ApiEndPointResources.getPostResourcesAddPlacesJSON())
+				.post(addPlaceApiResources.getApiResources())
 				.then().assertThat().statusCode(200).and()
 				.contentType(ContentType.JSON).and()
 				.body("status", equalTo("OK")).extract().response();

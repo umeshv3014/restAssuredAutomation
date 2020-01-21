@@ -11,7 +11,7 @@ import com.google.places.java.util.ApiUtil;
 import com.google.places.resoureces.ApiEndPointResources;
 import com.google.places.resoureces.Constant;
 
-import apiPayLoads.JSONbodyPayloads;
+import testDataBuild.JSONbodyPayloads;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import static org.hamcrest.Matchers.equalTo;

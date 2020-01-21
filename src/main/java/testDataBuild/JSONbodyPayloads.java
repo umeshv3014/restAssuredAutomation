@@ -1,7 +1,10 @@
-package apiPayLoads;
+package testDataBuild;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import apiPayLoads.AddGooglePlaces;
+import apiPayLoads.LocationGooglePlaces;
 
 public class JSONbodyPayloads {
 
@@ -33,12 +36,13 @@ public class JSONbodyPayloads {
 		return deletePlace;
 	}
 
-	public static AddGooglePlaces getPostDataAddPlaceDynamic() {
+	public static AddGooglePlaces getPostDataAddPlaceDynamic(String name,
+			String language, String address) {
 		AddGooglePlaces ap = new AddGooglePlaces();
 		ap.setAccuracy(50);
-		ap.setAddress("29, side layout, cohen 09");
-		ap.setLanguage("French-IN");
-		ap.setName("Frontline house");
+		ap.setAddress(address);
+		ap.setLanguage(language);
+		ap.setName(name);
 		ap.setPhone_number("(+91) 983 893 3937");
 		ap.setWebsite("http://google.com");
 		LocationGooglePlaces lp = new LocationGooglePlaces();
